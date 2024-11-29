@@ -37,7 +37,7 @@ def validate_input(prompt, data_type):
     while True:
         user_input = input(prompt)
         if data_type == "string":
-            if user_input.strip(): #თუ ცარიელ ველს შეიყვანს  დააბეჭდინოს რომ ველი არ უნდა იყოს ცარიელი
+            if user_input.strip(): 
                 return user_input
             else:
                 print("შესაყვანი ველი არ უნდა იყოს ცარიელი. გთხოვთ შეავსოთ ველი.")

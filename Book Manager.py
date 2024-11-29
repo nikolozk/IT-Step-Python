@@ -5,7 +5,7 @@ class Book:
         self.year = year
 
     def __str__(self):
-        return f"სათაური: {self.title}, ავტორი: {self.author}, გამოშვების წელი: {self.year}"
+        return f"სათაური: {self.title} | ავტორი: {self.author} | გამოშვების წელი: {self.year}"
 
 
 class BookManager:
@@ -14,8 +14,11 @@ class BookManager:
 
     def add_book(self, title, author, year):
         new_book = Book(title, author, year)
-        self.books.append(new_book)
-        print(f"წიგნი  '{title}' წარმატებით დაემატა.")
+        if any(book.title == title and book.author == author and book.year == year for book in self.books):
+            print("მსგავსი წიგნი სათაურით, ავტორით და გამოშვების წლით უკვე დამატებულია ბაზაში")
+        else:
+            self.books.append(new_book)
+            print(f"\nწიგნი '{title}' წარმატებით დაემატა ბაზაში.")
 
     def view_books(self):
         if not self.books:
@@ -37,22 +40,31 @@ def validate_input(prompt, data_type):
     while True:
         user_input = input(prompt)
         if data_type == "string":
-            if user_input.strip(): 
+            if user_input.strip():  # თუ ცარიელ ველს შეიყვანს, დააბეჭდინოს
                 return user_input
             else:
                 print("შესაყვანი ველი არ უნდა იყოს ცარიელი. გთხოვთ შეავსოთ ველი.")
-        return user_input
+        elif data_type == "year":
+            if user_input.isdigit() and len(user_input) == 4:
+                return user_input
+            else:
+                print("შესაყვანი წელი უნდა იყოს ოთხნიშნა ციფრი.")
+        else:
+            return user_input
 
 
 def main():
     manager = BookManager()
 
     while True:
+        print("-" * 60)
         print("\n1. წიგნის დამატება")
         print("2. წიგნების ჩამონათვალი")
         print("3. წიგნის მოძებნა სათაურით")
         print("4. პროგრამიდან გამოსვლა")
+        print("-" * 60)
         choice = input("აირჩიეთ სასურველი მოქმედება: ")
+        print("-" * 60)
 
         if choice == '1':
             title = validate_input("შეიყვანეთ წიგნის სათაური: ", "string")
@@ -60,7 +72,7 @@ def main():
             year = validate_input("შეიყვანეთ გამოცემის წელი: ", "year")
             manager.add_book(title, author, year)
         elif choice == '2':
-            print("\nწიგნების სია:")
+            print("\nწიგნების სია:" "\n")
             manager.view_books()
         elif choice == '3':
             search_title = validate_input("შეიყვანეთ წიგნის სათაური: ", "string")

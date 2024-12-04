@@ -20,10 +20,10 @@ def get_input():
         return num1, num2
     except ValueError:
         print("მოცემული მონაცემები არასწორია. გთხოვთ, შეიყვანოთ რიცხვები ხელახლა.")
-        get_input() #თუ კი პირველი ან მეორე რიცხვს არ შეიყვანს მომხმარებელი დააბრუნებს რიცხვების ხელახლა შესაყვანად 
+        return get_input()
 
 def show_menu():
-    print("\nკალკულატორი\ ") 
+    print("\nკალკულატორი \n") 
     print("1. დამატება (+) - ორ რიცხვს დავამატებთ.")
     print("2. გამოკლება (-) - პირველ რიცხვს მეორე რიცხვით გამოვაკლავთ.")
     print("3. გამრავლება (*) - ორ რიცხვს გავამრავლებთ.")
@@ -41,19 +41,20 @@ def main():
         
         if operation in ["1", "2", "3", "4"]:
             num1, num2 = get_input()
-            
-            if num1 is None or num2 is None:
-                continue
 
             if operation == "1":
-                print(f"შედეგი: {mimateba(num1, num2)}")
+                print(f"\nპასუხი: {num1} + {num2} = {mimateba(num1, num2)}\n")
+                print("-" * 60)
             elif operation == "2":
-                print(f"შედეგი: {gamokleba(num1, num2)}")
+                print(f"პასუხი: {num1} - {num2} = {gamokleba(num1, num2)}\n")
+                print("-" * 60)
             elif operation == "3":
-                print(f"შედეგი: {gamravleba(num1, num2)}")
+                print(f"პასუხი: {num1} * {num2} = {gamravleba(num1, num2)}\n")
+                print("-" * 60)
             elif operation == "4":
-                print(f"შედეგი: {gakopa(num1, num2)}")
+                print(f"პასუხი: {num1} / {num2} = {gakopa(num1, num2)}\n")
+                print("-" * 60)
         else:
-            print("არასწორი მოქმებდება! გთხოვთ ხელახლა შეიყვანოთ სასურველი ოპერაცია.")
+            print("\nარასწორი მოქმებდება! გთხოვთ ხელახლა შეიყვანოთ სასურველი ოპერაცია.")
 
 main()

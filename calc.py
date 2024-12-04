@@ -19,7 +19,7 @@ def get_input():
         num2 = float(input("შეიყვანეთ მეორე რიცხვი: "))
         return num1, num2
     except ValueError:
-        print("მოცემული მონაცემები არასწორია. გთხოვთ, შეყაროთ რიცხვები.")
+        print("მოცემული მონაცემები არასწორია. გთხოვთ, შეიყვანოთ რიცხვები ხელახლა.")
         return None, None
 
 def show_menu():
